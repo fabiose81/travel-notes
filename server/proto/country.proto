@@ -1,0 +1,92 @@
+syntax = "proto3";
+
+package country;
+
+service CountryService {
+    rpc AddCountry (AddCountryRequest) returns (AddCountryResponse);
+    rpc GetCountry (GetCountryRequest) returns (GetCountryResponse);
+    rpc UpdateCountry (UpdateCountryRequest) returns (UpdateCountryResponse);
+    rpc DeleteCountry (DeleteCountryRequest) returns (DeleteCountryResponse);
+    rpc ListCountries (ListCountriesRequest) returns (ListCountriesResponse);
+}
+
+message Country {
+    string id = 1;
+    string name = 2;
+    string code = 3;
+    Coordinates coordinates = 4;
+    Comments comments = 5;
+    string visitedAt = 6;
+    int32 rating = 7;
+}
+
+message Coordinates {
+    double latitude = 1;
+    double longitude = 2;
+}
+
+message Comments {
+    string food = 1;
+    string activities = 2;
+    string nature = 3;
+    string nightlife = 4;
+}
+
+message AddCountryRequest {
+    Country country = 1;
+}
+
+message AddCountryResponse {
+    repeated Message message = 1;
+}
+
+message GetCountryRequest {
+    string id = 1;
+}
+
+message GetCountryResponse {
+    bool status = 1;
+    oneof result {
+        string message = 2;
+        Country country = 3;
+    }
+}
+
+message UpdateCountryRequest {
+    Country country = 1;
+}
+
+message UpdateCountryResponse {
+    bool status = 1;
+    oneof result {
+        string message = 2;
+        Country country = 3;
+    }
+}
+
+message DeleteCountryRequest {
+    string id = 1;
+}
+
+message DeleteCountryResponse {
+    Message message = 1;
+}
+
+message CountryList {
+  repeated Country list = 1;
+}
+
+message ListCountriesRequest {}
+
+message ListCountriesResponse {
+    bool status = 1;
+    oneof result {
+        string message = 2;
+        CountryList countries = 3;
+    }
+}
+
+message Message {
+    bool status = 1;
+    string message = 2;
+}
