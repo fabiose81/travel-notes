@@ -39,13 +39,21 @@ jobs:
       - name: Set up Docker Buildx
         uses: docker/setup-buildx-action@v2
 
-      - name: Build and push Docker image
+      - name: Build and push python Docker image
         uses: docker/build-push-action@v4
         with:
           context: ./server
           dockerfile: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/travel-server:latest
+
+      - name: Build and push mongodb Docker image
+        uses: docker/build-push-action@v4
+        with:
+          context: ./mongodb
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/travel-database:latest
 
       - name: Cache Docker layers
         uses: actions/cache@v4
