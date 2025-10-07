@@ -1,4 +1,4 @@
 *.env
 __pycache__/
 
-mongodb
+mongodb/travel_data/
