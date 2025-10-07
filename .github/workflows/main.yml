@@ -46,6 +46,11 @@ jobs:
           dockerfile: Dockerfile
           push: true
           tags: ${{ secrets.DOCKER_HUB_USERNAME }}/travel-server:latest
+        with:
+          context: ./mongodb
+          dockerfile: Dockerfile
+          push: true
+          tags: ${{ secrets.DOCKER_HUB_USERNAME }}/travel-database:latest
 
       - name: Build and push mongodb Docker image
         uses: docker/build-push-action@v4
