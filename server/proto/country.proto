@@ -37,7 +37,7 @@ message AddCountryRequest {
 }
 
 message AddCountryResponse {
-    repeated Message message = 1;
+    Message message = 1;
 }
 
 message GetCountryRequest {

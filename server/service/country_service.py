@@ -52,14 +52,14 @@ def add(db, request):
         
         logging.info("✅ Country added successfully")
 
-        return country_pb2.AddCountryResponse(message=[
+        return country_pb2.AddCountryResponse(message=
             country_pb2.Message(status=True, message=str(result.inserted_id))
-        ])
+        )
     except Exception as e:
         logging.error("❌ Error occurred while processing request: %s", e)
-        return country_pb2.AddCountryResponse(message=[
+        return country_pb2.AddCountryResponse(message=
             country_pb2.Message(status=False, message=str(e))
-        ])
+        )
 
 def update(db, request):
     try:
