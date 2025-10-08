@@ -28,7 +28,7 @@ jobs:
     runs-on: ubuntu-latest
     env:
       AWS_REGION: us-east-1
-      IMAGE_DATABASE_TAG: travel-database
+      # IMAGE_DATABASE_TAG: travel-database
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
@@ -54,8 +54,7 @@ jobs:
           docker tag ${IMAGE_TAG}:latest $ECR_REGISTRY/${ECR_REPOSITORY}:${IMAGE_TAG}-latest
           docker push ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}-latest
 
-
-  # docker_hub:
+   # docker_hub:
   #   name: Push Docker image to Docker Hub
   #   needs: build
   #   runs-on: ubuntu-latest
