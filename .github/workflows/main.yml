@@ -68,7 +68,7 @@ jobs:
           ECR_REGISTRY: ${{ secrets.AWS_ACCOUNT_ID }}.dkr.ecr.${{ env.AWS_REGION }}.amazonaws.com
           ECR_REPOSITORY: travel-notes
           IMAGE_TAG: travel-database
-          DATABASE: travel_data
+          DATABASE: travel_notes
         run: |
           docker build --build-arg DATABASE=${DATABASE} -t ${IMAGE_TAG} ./mongodb
           docker tag ${IMAGE_TAG}:latest ${ECR_REGISTRY}/${ECR_REPOSITORY}:${IMAGE_TAG}-latest

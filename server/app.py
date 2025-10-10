@@ -8,7 +8,8 @@ import logging
 
 import grpc
 import country_pb2_grpc
-import pymongo
+from pymongo import MongoClient
+from pymongo.errors import ConnectionFailure, OperationFailure
 
 from dotenv import load_dotenv
 load_dotenv()
@@ -20,13 +21,17 @@ logging.basicConfig(level=logging.INFO)
 class Country(country_pb2_grpc.CountryServiceServicer):
     def __init__(self):
         try:
-            self.client = pymongo.MongoClient(f"mongodb://{os.environ['DATABASE_HOST']}:{os.environ['DATABASE_PORT']}/")
-            self.db = self.client["travelnote"]
+            self.client = MongoClient(f"mongodb://{os.environ['DATABASE_HOST']}:{os.environ['DATABASE_PORT']}/", serverSelectionTimeoutMS=5000)
+            self.client.admin.command('ping')
+            self.db = self.client[os.environ['DATABASE']]
             logging.info("✅ Connected to MongoDB")
-        except Exception as e:
-            logging.error("❌ MongoDB authentication failed:", e)
-       
-            
+        except ConnectionFailure:
+            logging.error("❌ MongoDB server not available or connection failed.")
+        except OperationFailure as err:
+            logging.error("❌ MongoDB operation failure encountered:", err)
+        except Exception as err:
+            logging.error("❌ MongoDB connection failed:", err)
+           
     def GetCountry(self, request, context):
         logging.info("Received request for getting country info")
         return service.get(self.db, request.id)
