@@ -1,3 +1,7 @@
+## Description
+    Python gRPC server to persiste travel information into mongodb.
+    GitAction pipeline to push server and database image to DockerHub
+
 ![alt text](https://github.com/fabiose81/travel-notes/blob/master/travel-notes.jpg?raw=true)
 
 ### For Python gRPC server and Docker container
