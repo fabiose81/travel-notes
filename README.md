@@ -1,6 +1,7 @@
 # Travel data recording tool.
 
   ⚙️ : Python
+  🍃 : MongoDB
   🐳 : Docker, Docker Hub
   🧩 : Github Actions
 
