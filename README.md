@@ -1,3 +1,9 @@
+# Travel data recording tool.
+
+  ⚙️ : Python
+  🐳 : Docker, Docker Hub
+  🧩 : Github Actions
+
 ## Description
     Python gRPC server to persiste travel information into mongodb.
     GitAction pipeline to push server and database image to DockerHub.
