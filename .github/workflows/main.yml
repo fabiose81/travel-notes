@@ -10,7 +10,7 @@ on:
         description: "Run all app?"
         type: choice
         options: [ yes, no ]
-        default: yes
+        default: no
       app_name:
         description: "Choice app"
         required: true
@@ -32,7 +32,7 @@ jobs:
          run: echo "Run all!"
 
    hello:
-     if: ${{ github.event_name == 'workflow_dispatch' && !github.event.inputs.run_all }}
+     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'no' }}
 
      runs-on: ubuntu-latest
      steps:
