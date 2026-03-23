@@ -9,9 +9,7 @@ on:
       run_all:
         description: "Run all app?"
         type: choice
-        options:
-          - yes
-          - no
+        options: [ yes, no ]
         default: yes
       app_name:
         description: "Choice app"
