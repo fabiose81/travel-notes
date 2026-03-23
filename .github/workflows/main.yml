@@ -39,17 +39,12 @@ jobs:
    #     run: echo "Run all!"
 
    hello:
-     if: >
-       ${{
-         (github.event_name == "push") ||
-         (github.event_name == "workflow_dispatch" && github.event.inputs.run_all == "yes") 
-       }}
+     if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'no') }}
 
      runs-on: ubuntu-latest
-
      steps:
        - name: hello
-       run: echo "Hello ${{ github.event.inputs.app_name }}"
+         run: echo "Hello ${{ github.event.inputs.app_name }}"
 
        
 #     paths:
