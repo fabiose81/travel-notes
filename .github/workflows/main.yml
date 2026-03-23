@@ -32,8 +32,8 @@ jobs:
          # run: echo "Run all!"
          run: |
             echo "event_name=${{ github.event_name }}"
-            echo "run_all=${{ inputs.run_all }}"
-            echo "raw=${{ toJson(github.event) }}"
+            echo "run_all=${{ github.event.inputs.run_all }}"
+            echo "full_event=${{ toJson(github.event.inputs) }}"
 
    hello:
      if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_all == 'no' }}
