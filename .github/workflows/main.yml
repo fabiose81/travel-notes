@@ -25,21 +25,16 @@ on:
 permissions: write-all
 
 jobs:
-   # all:
-   #   if: >
-   #     ${{
-   #       (github.event_name == "push") ||
-   #       (github.event_name == "workflow_dispatch" && github.event.inputs.run_all == "no") 
-   #     }}
+   all:
+     if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'yes')
 
-   #   runs-on: ubuntu-latest
-
-   #   steps:
-   #     - name: all
-   #     run: echo "Run all!"
+     runs-on: ubuntu-latest
+     steps:
+       - name: all
+       run: echo "Run all!"
 
    hello:
-     if: ${{ github.event_name == 'push' || (github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'no') }}
+     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'no' }}
 
      runs-on: ubuntu-latest
      steps:
