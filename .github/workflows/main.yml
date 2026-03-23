@@ -24,7 +24,7 @@ permissions: write-all
 
 jobs:
    all:
-     if: ${{ github.event_name == 'workflow_dispatch' && github.event.inputs.run_all == 'yes' }}
+     if: ${{ github.event_name == 'push' || github.event.inputs.run_all == 'yes' }}
 
      runs-on: ubuntu-latest
      steps:
