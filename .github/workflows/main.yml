@@ -29,7 +29,11 @@ jobs:
      runs-on: ubuntu-latest
      steps:
        - name: all
-         run: echo "Run all!"
+         # run: echo "Run all!"
+         run: |
+            echo "event_name=${{ github.event_name }}"
+            echo "run_all=${{ inputs.run_all }}"
+            echo "raw=${{ toJson(github.event) }}"
 
    hello:
      if: ${{ github.event_name == 'workflow_dispatch' && inputs.run_all == 'no' }}
